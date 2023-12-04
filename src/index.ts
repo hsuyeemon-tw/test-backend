@@ -6,6 +6,8 @@ import compression from 'compression';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
+import router from './router';
+
 const app = express();
 
 app.use(cors({
@@ -28,3 +30,5 @@ const MONGO_URL = 'mongodb+srv://hsu:root@cluster0.zpkyxi7.mongodb.net/?retryWri
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
 mongoose.connection.on('error', (error:Error)=> console.log(error));
+
+app.use('/', router);
